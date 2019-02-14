@@ -3,12 +3,16 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class Panel extends JPanel {
+    Picture picture;
+    
     public Panel() {
-	setPreferredSize(new Dimension(600, 400));
+	picture = new Picture();
+	Dimension d = new Dimension(picture.getWidth(), picture.getHeight());
+	setPreferredSize(d);
     }
 
     @Override
     public void paint(Graphics g) {
-	g.drawString("ABC", 200, 150);
+	g.drawImage(picture, 0, 0, this);
     }
 }
