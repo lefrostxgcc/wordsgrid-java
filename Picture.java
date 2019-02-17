@@ -30,14 +30,14 @@ public class Picture extends BufferedImage {
         box = new Box[N][N];
         for (int row = 0; row < N; row++)
             for (int col = 0; col < N; col++)
-                box[row][col] = new Box(g);
+                box[row][col] = new Box(g, D);
     }
     
     public void draw() {
         for (int row = 0; row < N; row++)
             for (int col = 0; col < N; col++)
                 box[row][col].draw(getRandomLetter(),
-                                   row * D, col * D, D + 1, D + 1);
+                                   row * D, col * D);
     }
 
     String getRandomLetter() {

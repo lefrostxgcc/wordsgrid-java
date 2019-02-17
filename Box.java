@@ -9,18 +9,18 @@ import java.awt.font.FontRenderContext;
 public class Box {
     Graphics g;
     Font font;
+    int D;
 
-    public Box(Graphics graphics) {
+    public Box(Graphics graphics, int D) {
         g = graphics;
-        font = new Font("Liberation Serif", Font.PLAIN, 20);
+        this.D = D;
+        font = new Font("Liberation Serif", Font.PLAIN, D / 2);
     }
 
-    public void draw(String letter, int x, int y, int sx, int sy) {
+    public void draw(String letter, int x, int y) {
         Graphics2D g2D = (Graphics2D) g;
         g2D.setColor(Color.BLACK);
-        sx--;
-        sy--;
-        g2D.drawRect(x, y, sx, sy);
+        g2D.drawRect(x, y, D, D);
         g.setFont(font);
         FontRenderContext frc = g2D.getFontRenderContext();
         TextLayout layout = new TextLayout(letter, font, frc);
@@ -28,8 +28,8 @@ public class Box {
         float ascent = layout.getAscent();
         float descent = layout.getDescent();
         float height = ascent + descent;
-        float letter_x = (float)(x+1) + ((float)(sx-2) - advance) / 2;
-        float letter_y = (float)(y+1) + ((float)(sy-2) - height) / 2 + ascent;
+        float letter_x = (float)(x+1) + ((float)(D-2) - advance) / 2;
+        float letter_y = (float)(y+1) + ((float)(D-2) - height) / 2 + ascent;
         g2D.setColor(Color.RED);
         layout.draw(g2D, letter_x, letter_y);
     }
