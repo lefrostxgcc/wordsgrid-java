@@ -17,7 +17,7 @@ public class Box {
         font = new Font("Liberation Serif", Font.PLAIN, D / 2);
     }
 
-    public void draw(String letter, int x, int y) {
+    public void draw(String letter, boolean hint, int x, int y) {
         Graphics2D g2D = (Graphics2D) g;
         g2D.setColor(Color.BLACK);
         g2D.drawRect(x, y, D, D);
@@ -30,7 +30,10 @@ public class Box {
         float height = ascent + descent;
         float letter_x = (float)(x+1) + ((float)(D-2) - advance) / 2;
         float letter_y = (float)(y+1) + ((float)(D-2) - height) / 2 + ascent;
-        g2D.setColor(Color.RED);
+        if (hint)
+            g2D.setColor(Color.ORANGE);
+        else
+            g2D.setColor(Color.RED);
         layout.draw(g2D, letter_x, letter_y);
     }
 }
